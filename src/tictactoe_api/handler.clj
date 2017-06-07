@@ -17,9 +17,9 @@
          (nil? occupied)
          {:status 404 :body {:board board :move move :valid false :error-response "Out of range"}}
          (not occupied)
-         {:status 200 :body {:board board :move move :valid false :error-response ""}}
+         {:status 200 :body {:board board :move move :valid true :error-response ""}}
          occupied
-         {:status  206 :body {:board board :move move :valid false :error-response "Square occupied"}}
+         {:status  406 :body {:board board :move move :valid false :error-response "Square occupied"}}
          :else
          {:status 404 :body {:board board :move move :valid false :error-response "Out of range"}})))
 
