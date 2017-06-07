@@ -6,6 +6,7 @@
                  [compojure "1.5.1"]
                  [org.clojure/data.json "0.2.6"]
                  [ring/ring-defaults "0.3.0"]
+                 [ring-cors "0.1.10"]
                  [ring/ring-json "0.4.0"]
                  [org.clojars.mkrump/tictactoe "0.1.0"]]
   :plugins [[lein-ring "0.9.7"]]

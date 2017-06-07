@@ -38,6 +38,7 @@
     <orderEntry type="library" name="Leiningen: org.clojure/tools.macro:0.1.5" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.nrepl:0.2.12" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.reader:0.9.1" level="project" />
+    <orderEntry type="library" name="Leiningen: ring-cors:0.1.10" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-anti-forgery:1.1.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-codec:1.0.1" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-core:1.5.0" level="project" />
@@ -46,7 +47,6 @@
     <orderEntry type="library" name="Leiningen: ring/ring-json:0.4.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-mock:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-ssl:0.3.0" level="project" />
-    <orderEntry type="library" name="Leiningen: tictactoe:0.1.0" level="project" />
     <orderEntry type="library" name="Leiningen: tigris:0.1.1" level="project" />
     <orderEntry type="module" module-name="tictactoe" />
   </component>

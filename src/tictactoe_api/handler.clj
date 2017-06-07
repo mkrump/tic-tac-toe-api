@@ -6,6 +6,7 @@
             [ring.middleware.json :as ring-json]
             [ring.util.response :as rr]
             [tictactoe.board :as board]
+            [ring.middleware.cors :as cors]
             [tictactoe.game :as game]
             [compojure.handler :as handler]))
 
@@ -21,7 +22,7 @@
          occupied
          {:status  406 :body {:board board :move move :valid false :error-response "Square occupied"}}
          :else
-         {:status 404 :body {:board board :move move :valid false :error-response "Out of range"}})))
+         {:status 404 :body {:board board :move move :valid false :error-response "Bad request"}})))
 
 (defroutes app-routes
   (POST "/valid-move" [] (fn [request] (move-is-valid request)))
@@ -29,6 +30,8 @@
 
 (def app
   (-> (handler/site app-routes)
+      (cors/wrap-cors :access-control-allow-origin [#".+"]
+                 :access-control-allow-methods [:get :put :post :delete])
       (ring-json/wrap-json-body {:keywords? true})
       (ring-json/wrap-json-response)))
 
