@@ -1,12 +1,16 @@
 # tictactoe-api
 
-FIXME
+Serves endpoints that can be used to play tictactoe
 
 ## Prerequisites
 
 You will need [Leiningen][] 2.0.0 or above installed.
 
 [leiningen]: https://github.com/technomancy/leiningen
+
+## Tests
+
+    lein test
 
 ## Running
 
