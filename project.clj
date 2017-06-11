@@ -8,7 +8,7 @@
                  [ring/ring-defaults "0.3.0"]
                  [ring-cors "0.1.10"]
                  [ring/ring-json "0.4.0"]
-                 [org.clojars.mkrump/tictactoe "0.1.0"]]
+                 [org.clojars.mkrump/tictactoe "0.1.1-SNAPSHOT"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler tictactoe-api.handler/app}
   :profiles
