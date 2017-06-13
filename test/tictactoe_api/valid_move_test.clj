@@ -4,9 +4,10 @@
             [clojure.data.json :as json]
             [tictactoe.board :as board]
             [tictactoe-api.handler :refer :all]
-            [tictactoe.computer-minimax-ab-player :refer :all]))
+            [tictactoe.computer-minimax-ab-player :refer :all]
+            [cheshire.core :as cheshire]))
 
-(defn response-body->map [response] (json/read-str (get-in response [:body]) :key-fn keyword))
+(defn response-body->map [response] (cheshire/parse-string (:body response) true))
 
 (deftest valid-move-test
   (testing "if move is valid returns 200 :valid is true"
@@ -16,8 +17,8 @@
                             (mock/body (json/json-str test-request))))
           response-body (response-body->map response)]
       (is (= (:status response) 200))
-      (is (= (:valid response-body) true))
-      (is (= (:error-response response-body) ""))
+      (is (= (get-in response-body [:game-state :valid] true)))
+      (is (= (:message response) ""))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 
 (deftest square-occupied-test
@@ -28,8 +29,8 @@
                             (mock/body (json/json-str test-request))))
           response-body (response-body->map response)]
       (is (= (:status response) 406))
-      (is (= (:valid response-body) false))
-      (is (= (:error-response response-body) "Square occupied"))
+      (is (= (get-in response-body [:game-state :valid] false)))
+      (is (= (:message response) "Square occupied"))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 
 (deftest out-of-range-test
@@ -40,8 +41,8 @@
                             (mock/body (json/json-str test-request))))
           response-body (response-body->map response)]
       (is (= (:status response) 404))
-      (is (= (:valid response-body) false))
-      (is (= (:error-response response-body) "Out of range"))
+      (is (= (get-in response-body [:game-state :valid] false)))
+      (is (= (:message response) "Out of range"))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 
 

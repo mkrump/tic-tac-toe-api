@@ -17,19 +17,19 @@
         occupied (board/square-occupied? board move)]
        (cond
          (nil? occupied)
-         {:status 404 :body {:board board :move move :valid false :error-response "Out of range"}}
+         {:status 404 :body {:game-state {:board board :move move :valid false }} :message "Out of range"}
          (not occupied)
-         {:status 200 :body {:board board :move move :valid true :error-response ""}}
+         {:status 200 :body {:game-state {:board board :move move :valid true}} :message ""}
          occupied
-         {:status  406 :body {:board board :move move :valid false :error-response "Square occupied"}}
+         {:status  406 :body {:game-state {:board board :move move :valid false}} :message "Square occupied"}
          :else
-         {:status 404 :body {:board board :move move :valid false :error-response "Bad request"}})))
+         {:status 404 :body {:game-state {:board board :move move :valid false}} :message "Bad request"})))
 
 (defn computer-move [request]
   (let [board (get-in request [:body :board])
         current-player  (get-in request [:body :current-player])
         move (computer-minimax-ab-player/minimax-move board current-player)]
-    {:status 200 :body {:board board :move move :error-response ""}}))
+    {:status 200 :body {:game-state {:board board :move move }} :message ""}))
 
 (defroutes app-routes
   (POST "/valid-move" [] (fn [request] (move-is-valid request)))
