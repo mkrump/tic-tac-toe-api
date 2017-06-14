@@ -23,8 +23,8 @@
                            {:board          board
                             :winner         winner
                             :is-tie         is-tie
-                            :current-player current-player}}
-       :message "Out of range"}
+                            :current-player current-player}
+                           :message "Out of range"}}
       (not occupied)
       (do
         (let [updated-board (board/make-move board move current-player)
@@ -35,22 +35,22 @@
                                {:board          updated-board
                                 :winner         updated-winner
                                 :is-tie         updated-is-tie
-                                :current-player updated-current-player}}
-           :message ""}))
+                                :current-player updated-current-player}
+                               :message "Success"}}))
       occupied
       {:status  406 :body {:game-state
                            {:board          board
                             :winner         winner
                             :is-tie         is-tie
-                            :current-player current-player}}
-       :message "Square occupied"}
+                            :current-player current-player}
+                           :message "Square occupied"}}
       :else
       {:status  404 :body {:game-state
                            {:board          board
                             :winner         winner
                             :is-tie         is-tie
-                            :current-player current-player}}
-       :message "Bad request"})))
+                            :current-player current-player}
+                           :message "Bad request"}})))
 
 (defn computer-move [request]
   (let [board (get-in request [:body :game-state :board])
@@ -64,8 +64,7 @@
                          {:board          updated-board
                           :winner         updated-winner
                           :is-tie         updated-is-tie
-                          :current-player updated-player}}
-     :message ""}))
+                          :current-player updated-player} :message "Success"}}))
 
 (defroutes app-routes
            (POST "/valid-move" [] (fn [request] (move-is-valid request)))

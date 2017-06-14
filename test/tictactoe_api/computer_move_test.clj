@@ -25,7 +25,7 @@
       (is (= 1 (get-in response-body [:game-state :current-player])))
       (is (= 0 (get-in response-body [:game-state :winner])))
       (is (= false (get-in response-body [:game-state :is-tie])))
-      (is (= (:message response) ""))
+      (is (= (get-in [:message] "Sucesss")))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 
 (deftest computer-move-one-open-test
@@ -46,6 +46,6 @@
       (is (= 1 (get-in response-body [:game-state :current-player])))
       (is (= -1 (get-in response-body [:game-state :winner])))
       (is (= false (get-in response-body [:game-state :is-tie])))
-      (is (= (:message response) ""))
+      (is (= (get-in response-body [:message] "Success")))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 

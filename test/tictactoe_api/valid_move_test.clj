@@ -25,7 +25,7 @@
       (is (= (get-in response-body [:game-state :board :board-contents]) [1, -1, 0, 0, 0, 0, 0, 0, 0]))
       (is (= (get-in response-body [:game-state :winner]) 0))
       (is (= (get-in response-body [:game-state :is-tie]) false))
-      (is (= (:message response) ""))
+      (is (= (get-in response-body [:message]) "Success"))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 
 (deftest square-occupied-test
@@ -41,7 +41,7 @@
           response-body (response-body->map response)]
       (is (= (:status response) 406))
       (is (= (get-in response-body [:game-state]) intial-game-state))
-      (is (= (:message response) "Square occupied"))
+      (is (= (get-in response-body [:message]) "Square occupied"))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 
 (deftest out-of-range-test
@@ -57,7 +57,7 @@
           response-body (response-body->map response)]
       (is (= (:status response) 404))
       (is (= (get-in response-body [:game-state]) intial-game-state))
-      (is (= (:message response) "Out of range"))
+      (is (= (get-in response-body [:message]) "Out of range"))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 
 
