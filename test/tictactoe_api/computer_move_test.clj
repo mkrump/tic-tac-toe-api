@@ -12,10 +12,10 @@
 (deftest computer-move-multiple-open-tests
   (testing "computer move returns 200 and updates game state"
     (let [test-request {:game-state
-                        {:board {:board-contents [1, 0, 0, 0, 0, 0, 0, 0, 0] :gridsize 3}
+                        {:board          {:board-contents [1, 0, 0, 0, 0, 0, 0, 0, 0] :gridsize 3}
                          :current-player -1
-                         :winner 0
-                         :is-tie false}}
+                         :winner         0
+                         :is-tie         false}}
           response (app (-> (mock/request :post "/computer-move")
                             (mock/content-type "application/json")
                             (mock/body (json/json-str test-request))))
@@ -31,10 +31,10 @@
 (deftest computer-move-one-open-test
   (testing "computer move returns 200 and 3 (the only open square)"
     (let [test-request {:game-state
-                        {:board {:board-contents  [1, -1, 1, 0, -1, -1, -1, 1, -1] :gridsize 3}
+                        {:board          {:board-contents [1, -1, 1, 0, -1, -1, -1, 1, -1] :gridsize 3}
                          :current-player -1
-                         :winner 0
-                         :is-tie false}}
+                         :winner         0
+                         :is-tie         false}}
           response (app (-> (mock/request :post "/computer-move")
                             (mock/content-type "application/json")
                             (mock/body (json/json-str test-request))))
