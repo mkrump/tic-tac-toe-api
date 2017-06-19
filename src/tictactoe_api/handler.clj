@@ -38,6 +38,6 @@
 (def app
   (-> (handler/site app-routes)
       (cors/wrap-cors :access-control-allow-origin [#".+"]
-                      :access-control-allow-methods [:get :put :post :delete])
+                      :access-control-allow-methods [:post])
       (ring-json/wrap-json-body {:keywords? true})
       (ring-json/wrap-json-response)))
