@@ -2,10 +2,8 @@
   (:require [clojure.test :refer :all]
             [ring.mock.request :as mock]
             [clojure.data.json :as json]
-            [tictactoe.board :as board]
-            [tictactoe-api.handler :refer :all]
-            [tictactoe.computer-minimax-ab-player :refer :all]
-            [cheshire.core :as cheshire]))
+            [cheshire.core :as cheshire]
+            [tictactoe-api.handler :refer :all]))
 
 (defn response-body->map [response] (cheshire/parse-string (:body response) true))
 
@@ -24,6 +22,7 @@
       (is (= [1, 0, 0, 0, -1, 0, 0, 0, 0] (get-in response-body [:game-state :board :board-contents])))
       (is (= 1 (get-in response-body [:game-state :current-player])))
       (is (= 0 (get-in response-body [:game-state :winner])))
+      (is (= false (get-in response-body [:game-state :game-over])))
       (is (= false (get-in response-body [:game-state :is-tie])))
       (is (= (get-in [:message] "Sucesss")))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
@@ -46,6 +45,7 @@
       (is (= 1 (get-in response-body [:game-state :current-player])))
       (is (= -1 (get-in response-body [:game-state :winner])))
       (is (= false (get-in response-body [:game-state :is-tie])))
+      (is (= true (get-in response-body [:game-state :game-over])))
       (is (= (get-in response-body [:message] "Success")))
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 

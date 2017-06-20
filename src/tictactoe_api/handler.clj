@@ -5,29 +5,30 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.json :as ring-json]
             [ring.middleware.cors :as cors]
-            [tictactoe.ttt-core :as ttt-core]))
+            [tictactoe.tictactoe-core.ttt-core :as ttt-core]))
 
 (defn move-is-valid [request]
   (let [request-body (:body request)
         original-game-state (:game-state request-body)
         move (:move request-body)
-        response (ttt-core/square-occupied original-game-state move)]
+        {:keys [status message]} (ttt-core/move-status original-game-state move)]
     (cond
-      (= response :out-of-range)
-      {:status 404 :body {:game-state original-game-state :message "Out of range"}}
-      (= response :valid-move)
+      (= status :out-of-range)
+      {:status 404 :body {:game-state original-game-state :message message}}
+      (= status :valid-move)
       (do
         (let [updated-game-state (ttt-core/update-game-state original-game-state move)]
-          {:status 200 :body {:game-state updated-game-state :message "Success"}}))
-      (= response :occupied)
-      {:status 406 :body {:game-state original-game-state :message "Square occupied"}}
+          {:status 200 :body {:game-state updated-game-state :message message}}))
+      (= status :occupied)
+      {:status 406 :body {:game-state original-game-state :message message}}
       :else
-      {:status 404 :body {:game-state original-game-state :message "Bad request"}})))
+      {:status 404 :body {:game-state original-game-state :message message}})))
 
 (defn computer-move [request]
   (let [request-body (:body request)
         original-game-state (:game-state request-body)
-        updated-game-state (ttt-core/make-computer-move original-game-state)]
+        move (ttt-core/get-computer-move original-game-state)
+        updated-game-state (ttt-core/update-game-state original-game-state move)]
     {:status 200 :body {:game-state updated-game-state :message "Success"}}))
 
 (defroutes app-routes
@@ -41,3 +42,4 @@
                       :access-control-allow-methods [:post])
       (ring-json/wrap-json-body {:keywords? true})
       (ring-json/wrap-json-response)))
+

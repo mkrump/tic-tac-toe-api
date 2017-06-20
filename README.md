@@ -35,6 +35,7 @@ curl -X POST \
       },
       "winner": 0,
       "is-tie": false,
+      "game-over": false,
       "current-player": -1
   }
 }'
@@ -54,6 +55,7 @@ curl -X POST \
          },
          "winner": 0,
          "is-tie": false,
+         "game-over": false,
          "current-player": -1
      },
      "move": 2 
