@@ -1,0 +1,9 @@
+language: clojure
+deploy:
+  provider: heroku
+  api_key:
+    secure: K3Y1j8MnTZa1vc20rBRicjTTRW/VjEol8GWddjH8ICRb7h0XAi2krlZDxDXocJkC+POlYdZHs3oOVtXXu37d8whibDlsoBE32SHrUlViCCPdKAw2jFItDnAIjgZc6bo748AFQpnrB+0qI/oDnh15VZ0SbT29T+u+WgDvN+y0vv/3OwAaWIHFrPOu2rup7b/cLpwuVObTjZ/8gdTkxISujqw+tfXyGWRvUHgV16aDuHBowYSE8LM/pQNg2mkvN+kb8XUdFkF+CWXE0of/yFKjrD87Dcws3f/cD8GiiCZxVkoqM+spMbpFKTaTDy3jrcBxoD6vNJwuKIN4c86o00sFOw4ZpbGzYbphJYtA5ZvMBXBCb4DDCojOhz4/ayAp8ksNqr7hrxsjMBPNkEll9+Tf3/ai/o9/InEKNfJCvuPnVwG8Fc+atYauukeViZq1MxAjchcibTAeI7WjrJeAMmH1LFb2HHML5qgcfZ4t/0BqhUqNr7jpCYKWPZXGrrK3UtOb6XZM/mpYjq9zxIsDIG4AEU2mM0tAQWliypjAVVdULBfkoL2Vu9SfEirpGXrngPWM3iYL7lApT1501PBh5sQ8P80eNuQ07TkWKEF+7P8Gwsu5AAkzMxcSxpRM6WOQCKWMjF7qhsM2woLI1p44r97XY7C8v+rCKYtVoVhe2Z7qefo=
+  app: tic-tac-toe-clojure
+  on:
+    repo: mkrump/tic-tac-toe-api
+    branch: simplify-handler
