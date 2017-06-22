@@ -8,5 +8,3 @@
   (testing "invalid-route"
     (let [response (app (-> (mock/request :get "/no-route-here")))]
       (is (= (:status response) 404)))))
-
-
