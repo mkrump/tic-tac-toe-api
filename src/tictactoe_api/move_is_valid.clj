@@ -10,9 +10,8 @@
       (= status :out-of-range)
       {:status 404 :body {:game-state original-game-state :message message}}
       (= status :valid-move)
-      (do
-        (let [updated-game-state (ttt-core/update-game-state original-game-state move)]
-          {:status 200 :body {:game-state updated-game-state :message message}}))
+      (let [updated-game-state (ttt-core/update-game-state original-game-state move)]
+        {:status 200 :body {:game-state updated-game-state :message message}})
       (= status :occupied)
       {:status 406 :body {:game-state original-game-state :message message}}
       :else

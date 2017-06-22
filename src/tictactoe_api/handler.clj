@@ -19,4 +19,3 @@
                       :access-control-allow-methods [:post])
       (ring-json/wrap-json-body {:keywords? true})
       (ring-json/wrap-json-response)))
-
