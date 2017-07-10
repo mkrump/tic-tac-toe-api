@@ -33,6 +33,7 @@
     <orderEntry type="library" name="Leiningen: javax.servlet/servlet-api:2.5" level="project" />
     <orderEntry type="library" name="Leiningen: joda-time:2.8.2" level="project" />
     <orderEntry type="library" name="Leiningen: medley:0.8.2" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojars.mkrump/tictactoe:0.1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.8.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/data.json:0.2.6" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.macro:0.1.5" level="project" />
@@ -48,6 +49,5 @@
     <orderEntry type="library" name="Leiningen: ring/ring-mock:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-ssl:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: tigris:0.1.1" level="project" />
-    <orderEntry type="module" module-name="tictactoe" />
   </component>
 </module>
